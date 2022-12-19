@@ -27,6 +27,14 @@ const messageModel = new Schema({
 		type: Date,
 		required: true,
 		default: new Date()
+	},
+	senderPhotoURL: {
+		type: String
+	},
+	orderTimestamp: {
+		type: Number,
+		required: true,
+		default: new Date().getTime()
 	}
 });
 

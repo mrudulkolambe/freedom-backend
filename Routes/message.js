@@ -7,7 +7,7 @@ const Message = require('../Models/messageModel')
 //GET ALL PROPERTIES OF USER
 router.post('/', isValidToken, async (req, res) => {
 	try {
-		const messages = await Message.find({ to: req.AuthenticateUser._id })
+		const messages = await Message.find({ to: req.AuthenticateUser._id }).sort({orderTimestamp: -1}) 
 		res.status(200).json(messages);
 	} catch (err) {
 		res.status(400).json({ message: err.message })
