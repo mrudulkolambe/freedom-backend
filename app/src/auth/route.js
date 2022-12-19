@@ -122,8 +122,8 @@ router.post("/verify_otp", async (req, res) => {
             }
             else {
                 await userSchema.updateOne({ phone_number: req.body.phone_number }, { is_login: true, last_login_at: new Date(), updated_at: new Date() });
-                let token = jwt.sign({ _id: check._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
-                let refresh_token = jwt.sign({ _id: check._id }, process.env.JWT_RERESH_SECRET);
+                let token = jwt.sign({ _id: check._id }, "8R9TBUCVEXFYG2J3K4N6P7Q9SA", { expiresIn: "1d" });
+                let refresh_token = jwt.sign({ _id: check._id }, "TBUCWEXFYG2J3K4N6P7Q9SATBV");
                 res.status(200).json({ message: "User verified successfully", status: true, data: check, access_token: token, refresh_token: refresh_token });
             }
         }

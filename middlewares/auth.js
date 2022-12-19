@@ -8,7 +8,7 @@ isValidToken = async (req, res, next) => {
       const token = req.headers.authorization.split(" ")[1]; //get the token
       try
       {
-        const decode = await jwt.verify(token, process.env.JWT_SECRET);
+        const decode = await jwt.verify(token, "8R9TBUCVEXFYG2J3K4N6P7Q9SA");
         const user = await UserModel.findOne({
           _id: decode._id,
         }).catch((err) => {

@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
 	} else {
 		try {
 			if (await bcrypt.compare(req.body.password, user.password)) {
-				const accessToken = jwt.sign({ email: user.email, role: user.role }, process.env.ACCESS_TOKEN_SECRET)
+				const accessToken = jwt.sign({ email: user.email, role: user.role }, "a673010911bef1394a8d0496eb7a5c5ae6400eb8033ae4b7f8616a06bf11b6c1fad3cb5809db9b8b80b998cc490053c70a1cf36d706ebe96f845b0988e185ffd")
 				res.send({ accessToken, user })
 			} else {
 				res.send("Not allowed")

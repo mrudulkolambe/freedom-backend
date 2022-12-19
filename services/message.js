@@ -1,9 +1,9 @@
 require('dotenv').config();
 var AWS = require('aws-sdk');
 AWS.config.update({
-    "accessKeyId": process.env.ACCESS_KEY_ID,
-    "secretAccessKey": process.env.SECRET_ACCESS_KEY,
-    "region": process.env.REGION 
+    "accessKeyId": "AKIAUX7BYM6ZZALNQ2HD",
+    "secretAccessKey": "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",
+    "region": "ap-south-1" 
 });
 
 async function sendSMSUsingSNS(message, phone) {

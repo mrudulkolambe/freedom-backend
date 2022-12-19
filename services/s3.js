@@ -1,10 +1,10 @@
 var AWS = require('aws-sdk');
 AWS.config.update({
-    "accessKeyId": process.env.ACCESS_KEY_ID,
-    "secretAccessKey": process.env.SECRET_ACCESS_KEY,
-    "region": process.env.REGION  
+    "accessKeyId": "AKIAUX7BYM6ZZALNQ2HD",
+    "secretAccessKey": "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",
+    "region": "ap-south-1"  
 });
-var s3Bucket = new AWS.S3( { params: {Bucket: process.env.BUCKET_NAME} } );
+var s3Bucket = new AWS.S3( { params: {Bucket: "freedom-documents"} } );
 
 function fileUploadViaBase64(file_path,base64string,contentType)
 {
@@ -50,7 +50,7 @@ async function fileUploadViaMultipart(file_path,content,contentType)
 
 function deleteFolder(file_path,callback){
     var params = {
-      Bucket: process.env.BUCKET_NAME,
+      Bucket: "freedom-documents",
       Prefix: file_path
     };
   
@@ -59,7 +59,7 @@ function deleteFolder(file_path,callback){
   
       if (data.Contents.length == 0);
   
-      params = {Bucket: process.env.BUCKET_NAME};
+      params = {Bucket: "freedom-documents"};
       params.Delete = {Objects:[]};
       
       data.Contents.forEach(function(content) {
@@ -69,7 +69,7 @@ function deleteFolder(file_path,callback){
       s3Bucket.deleteObjects(params, function(err, data) {
         if (err) return err;
         if (data.IsTruncated) {
-            deleteFolder(process.env.BUCKET_NAME);
+            deleteFolder("freedom-documents");
         } else {
           callback();
         }
