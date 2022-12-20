@@ -28,7 +28,7 @@ const customerModel = new Schema({
 		type: Object
 	},
 	contactType: {
-		type: String
+		type: [String]
 	}
 });
 

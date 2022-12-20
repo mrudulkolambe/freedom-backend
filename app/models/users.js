@@ -44,9 +44,6 @@ const userSchema = new mongoose.Schema(
     qualification: {
       type: String,
     },
-    interest: {
-      type: Array,
-    },
     pincode: {
       type: Number,
     },

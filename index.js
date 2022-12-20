@@ -9,6 +9,7 @@ const propertyRouter = require('./Routes/property');
 const userRouter = require('./Routes/user');
 const messageRouter = require('./Routes/message')
 const caseRouter = require('./Routes/case')
+const contactRouter = require("./Routes/contact");
 
 require('dotenv').config()
 app.use(cors())
@@ -30,6 +31,7 @@ app.use("/application", applicationRouter)
 app.use("/property", propertyRouter)
 app.use("/message", messageRouter)
 app.use('/case', caseRouter)
+app.use('/contact', contactRouter)
 // app.use("/user", userRouter)
 
 app.get('/', (req, res) => {
