@@ -102,6 +102,9 @@ const userSchema = new mongoose.Schema(
     },
     outstandings: {
       type: Object
+    },
+    contactType: {
+      type: [String]
     }
   });
 
