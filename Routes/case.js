@@ -18,7 +18,7 @@ router.post("/add", isValidToken, async (req, res) => {
 	try {
 		const application = await Application.findOne({ applicant1: req.AuthenticateUser._id })
 		if (application) {
-			const newCase = new Case({ applicant1: req.AuthenticateUser._id, property: application?.property, documents: application?.documents, interestedIn: application?.interestedIn, caseId: Math.ceil(Math.random() * 100000000) })
+			const newCase = new Case({ applicant1: req.AuthenticateUser._id, property: application.property, documents: application.documents, interestedIn: application.interestedIn, caseId: Math.ceil(Math.random() * 100000000) })
 			const finalCase = await newCase.save()
 			await Application.findByIdAndDelete(application._id)
 				.then(() => {
