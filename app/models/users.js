@@ -105,6 +105,9 @@ const userSchema = new mongoose.Schema(
     },
     contactType: {
       type: [String]
+    },
+    isManagedByFreedom: {
+      type: Boolean
     }
   });
 
