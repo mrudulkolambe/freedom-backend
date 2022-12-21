@@ -27,6 +27,15 @@ function generate_otp() {
     }
 }
 
+// var transporter = nodemailer.createTransport(smtpTransport({
+//     service: 'gmail',
+//     host: 'smtp.gmail.com',
+//     auth: {
+//         user: "training.placement@sigce.edu.in",
+//         pass: "yuwhehounwomixpy"
+//     }
+// }));
+
 
 router.post("/login", async (req, res) => {
     try {
@@ -69,6 +78,17 @@ router.post("/login", async (req, res) => {
         });
     }
 });
+
+
+router.post('/spouse-update', async (req, res) => {
+    try {
+        sendSMS(`Your details have been used by ${req.body.name} for creating Application in Freedom Application`, req.body.country_code + "" + req.body.phone_number);
+        res.json({message: "Message Sent"})
+    }
+    catch (err) {
+
+    }
+})
 
 /* resend otp. */
 router.post("/resend_otp", async (req, res) => {

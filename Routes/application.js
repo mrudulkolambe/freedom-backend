@@ -17,9 +17,9 @@ router.post('/', isValidToken, async (req, res) => {
 
 router.post("/add", isValidToken, async (req, res) => {
 	try {
-		const PrevApplications = await Application.find({ customer: req.AuthenticateUser._id })
+		const PrevApplications = await Application.find({ applicant1: req.AuthenticateUser._id })
 		if (PrevApplications.length === 0) {
-			const newApplicant = new Application({ ...req.body, customer: req.AuthenticateUser._id })
+			const newApplicant = new Application({ ...req.body, applicant1: req.AuthenticateUser._id })
 			const newApplicantFinal = await newApplicant.save()
 			res.status(200).json(newApplicantFinal);
 		} else {

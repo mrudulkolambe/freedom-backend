@@ -17,13 +17,17 @@ router.post('/', isValidToken, async (req, res) => {
 router.post("/add", isValidToken, async (req, res) => {
 	try {
 		const application = await Application.findOne({ applicant1: req.AuthenticateUser._id })
-		const newCase = new Case({ applicant1: req.AuthenticateUser._id, property: application.property, documents: application.documents, interestedIn: application.interestedIn })
-		const finalCase = await newCase.save()
-		await Application.findByIdAndDelete(application._id)
-			.then(() => {
-				console.log("deleted")
-			})
-		res.status(200).json(finalCase);
+		if (application) {
+			const newCase = new Case({ applicant1: req.AuthenticateUser._id, property: application?.property, documents: application?.documents, interestedIn: application?.interestedIn, caseId: Math.ceil(Math.random() * 100000000) })
+			const finalCase = await newCase.save()
+			await Application.findByIdAndDelete(application._id)
+				.then(() => {
+					console.log("deleted")
+				})
+			res.status(200).json(finalCase);
+		} else {
+			res.status(404).json({ message: "Application Not Found!" })
+		}
 	} catch (err) {
 		res.status(400).json({ message: err.message })
 	}
@@ -35,8 +39,8 @@ router.patch("/:id", isValidToken, async (req, res) => {
 		if (check && check.status === "New Lead" || check.status === "Awaiting") {
 			const updatedCase = await Case.findByIdAndUpdate(req.params.id, req.body, { new: true })
 			res.status(200).json(updatedCase)
-		}else{
-			res.json({message: "Not allowed to update"})
+		} else {
+			res.json({ message: "Not allowed to update" })
 		}
 
 	} catch (err) {
