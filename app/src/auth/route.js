@@ -96,7 +96,6 @@ router.post("/resend_otp", async (req, res) => {
 });
 
 router.patch('/update', isValidToken, async (req, res) => {
-    console.log(req.AuthenticateUser._id)
     try {
         const user = await userSchema.findOneAndUpdate({ _id: req.AuthenticateUser._id }, req.body, {
             returnOriginal: false
@@ -107,6 +106,15 @@ router.patch('/update', isValidToken, async (req, res) => {
     }
 })
 
+router.post('/create', isValidToken, async (req, res) => {
+    try {
+        const user = new userSchema(req.body)
+        const newUser = user.save()
+        res.send(newUser)
+    } catch (error) {
+        res.send(error)
+    }
+})
 //verify otp
 router.post("/verify_otp", async (req, res) => {
     try {
