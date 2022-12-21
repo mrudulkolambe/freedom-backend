@@ -27,16 +27,6 @@ function generate_otp() {
     }
 }
 
-// var transporter = nodemailer.createTransport(smtpTransport({
-//     service: 'gmail',
-//     host: 'smtp.gmail.com',
-//     auth: {
-//         user: "training.placement@sigce.edu.in",
-//         pass: "yuwhehounwomixpy"
-//     }
-// }));
-
-
 router.post("/login", async (req, res) => {
     try {
         let otp = generate_otp();
