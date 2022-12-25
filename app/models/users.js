@@ -106,9 +106,6 @@ const userSchema = new mongoose.Schema(
     contactType: {
       type: [String]
     },
-    isManagedByFreedom: {
-      type: Boolean
-    }
   });
 
 module.exports = mongoose.model("Customer", userSchema);

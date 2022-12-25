@@ -13,6 +13,9 @@ const PropertySchema = new Schema({
 	propertyDetails: {
 		type: Object,
 	},
+	isManagedByFreedom: {
+		type: Boolean
+	}
 });
 
 const Property = mongoose.model('Property', PropertySchema);
